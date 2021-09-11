@@ -47,6 +47,15 @@ public class DisciplinaController {
         return new ResponseEntity(disciplinaService.obterDisciplinaPorId(id), HttpStatus.OK);
     }
 
+    @PatchMapping(path = "/{id}/nota")
+    public ResponseEntity<Disciplina> atualizarNotaPorId(@PathVariable int id, @RequestBody Disciplina d) {
+        if(disciplinaService.obterDisciplinaPorId(id) == null) {
+            return new ResponseEntity("Disciplina não existe.",HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity(disciplinaService.obterDisciplinaPorId(id), HttpStatus.OK);
+    }
+
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<?> deleteDisciplina(@PathVariable int id){
         if(disciplinaService.obterDisciplinaPorId(id) == null) {
